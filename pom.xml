@@ -16,18 +16,18 @@
 		<mule.tools.version>1.2</mule.tools.version>
 		<!-- <mule.home>${MULE_HOME}</mule.home> -->
 		<mule.runtime.community>true</mule.runtime.community>
-		<anypoint.username>${env.ANYPOINT_USERNAME}</anypoint.username>
-		<anypoint.password>${env.ANYPOINT_PASSWORD}</anypoint.password>
-		<cloundhub.env>Development</cloundhub.env>
+		<anypoint.username>mreddy-esb</anypoint.username>
+		<anypoint.password>Ritdumdig1</anypoint.password>
+		<cloundhub.env>Sandbox</cloundhub.env>
 		<anypoint.uri>https://anypoint.mulesoft.com</anypoint.uri>
-		<arm.target.name></arm.target.name>
+		<arm.target.name>myLocalServer</arm.target.name>
 		<!-- One of: server, serverGroup, cluster -->
 		<arm.target.type>server</arm.target.type>
-		<arm.environment>Development</arm.environment>
+		<arm.environment>Sandbox</arm.environment>
 		<build.number>0</build.number>
 	</properties>
 
-	<distributionManagement>
+	<!-- <distributionManagement>
 		<snapshotRepository>
 			<id>ossrh</id>
 			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
@@ -36,10 +36,29 @@
 			<id>ossrh</id>
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
-	</distributionManagement>
+	</distributionManagement> -->
+	
+	
+	
+	<distributionManagement>
+        <repository>
+            <id>LocalReleases</id>
+            <!-- nexus -->
+            <url>http://localhost:8081/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>LocalSnapshots</id>
+            <url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+	
+	
+	
+	
+	
 
 	<build>
-		<finalName>${artifactId}-${version}-b${build.number}</finalName>
+		<!-- <finalName>${artifactId}-${version}-b${build.number}</finalName> -->
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -98,7 +117,7 @@
 		</pluginManagement>
 	</build>
 	<profiles>
-		<profile>
+		<!-- <profile>
 			<id>standalone</id>
 			<build>
 				<plugins>
@@ -124,8 +143,8 @@
 					</plugin>
 				</plugins>
 			</build>
-		</profile>
-		<profile>
+		</profile> -->
+		<!-- <profile>
 			<id>cloudhub</id>
 			<build>
 				<plugins>
@@ -157,7 +176,7 @@
 					</plugin>
 				</plugins>
 			</build>
-		</profile>
+		</profile> -->
 		<profile>
 			<id>arm</id>
 			<build>
@@ -170,7 +189,7 @@
 							<deploymentType>arm</deploymentType>
 							<username>${anypoint.username}</username>
 							<password>${anypoint.password}</password>
-							<businessGroup>${anypoint.businessGroup}</businessGroup>
+							<!-- <businessGroup>${anypoint.businessGroup}</businessGroup> -->
 							<uri>${anypoint.uri}</uri>
 							<target>${arm.target.name}</target>
 							<!-- One of: server, serverGroup, cluster -->
